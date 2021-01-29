@@ -25,11 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="phone-decrease" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="phone-quantity" type="text" class="form-control text-center" value="1">
+                           <button id="phone-increase" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
+                        <h5 id="phoneTotalPrice">$1219</h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -43,9 +43,9 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="case-decrease" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button onclick="handleProductChange(false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
                            <input id="case-quantity" type="text" class="form-control text-center" value="1">
-                           <button id="case-increase" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="handleProductChange(true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
                         <h5 id="caseTotalPrice">$59</h5>
@@ -78,14 +78,17 @@
       </div>
    </section>
    <script>
+
+      //second step with function and lastly use function onclick so go button
+      
       // case plus button select and create addEventListener
-      document.getElementById('case-increase').addEventListener('click',function(){
+      /* document.getElementById('case-increase').addEventListener('click',function(){
          handleProductChange(true);
       });
 
       document.getElementById('case-decrease').addEventListener('click',function(){
          handleProductChange(false);
-      })
+      }) */
       //function use
       function handleProductChange(isIncrease){
          const caseInput = document.getElementById('case-quantity');
@@ -102,6 +105,11 @@
          const caseTotalPrice = caseNewCount * 59;
          document.getElementById('caseTotalPrice').innerText = '$' + caseTotalPrice;
       }
+
+
+       //at first step without function for apple mobile case
+
+
      /*  // case plus button select and create addEventListener
       document.getElementById('case-increase').addEventListener('click',function(){
          // capture input value showing from input id
@@ -115,6 +123,7 @@
          // confusion
          document.getElementById('caseTotalPrice').innerText = '$' + caseTotalPrice;
       });
+     
 
       document.getElementById('case-decrease').addEventListener('click',function(){
          const caseInput = document.getElementById('case-quantity');
@@ -125,6 +134,69 @@
          document.getElementById('caseTotalPrice').innerText = '$' + caseTotalPrice;
       })
  */
+
+
+
+      //at first step without function for apple mobile 
+
+      document.getElementById('phone-increase').addEventListener('click',function(){
+         handlePhoneChange(true);
+         /* const phoneInput = document.getElementById('phone-quantity');
+         const phoneQuantity = parseInt(phoneInput.value);
+         const phoneNewCount = phoneQuantity + 1;
+         phoneInput.value = phoneNewCount;
+         const phoneTotalPrice = phoneNewCount * 1219;
+         //phoneTotalPrice
+         document.getElementById('phoneTotalPrice').innerText = '$' + phoneTotalPrice; */
+
+      });
+      document.getElementById('phone-decrease').addEventListener('click',function(){
+         handlePhoneChange(false);
+         /* const phoneInput = document.getElementById('phone-quantity');
+         const phoneQuantity = parseInt(phoneInput.value);
+         const phoneNewCount = phoneQuantity - 1;
+         phoneInput.value = phoneNewCount;
+         const phoneTotalPrice = phoneNewCount * 1219;
+         //phoneTotalPrice
+         document.getElementById('phoneTotalPrice').innerText = '$' + phoneTotalPrice; */
+
+      });
+      function handlePhoneChange(isIncrease){
+         document.getElementById('phone-increase').addEventListener('click',function(){
+         const phoneInput = document.getElementById('phone-quantity');
+         const phoneQuantity = parseInt(phoneInput.value);
+         // const phoneNewCount = phoneQuantity + 1;
+         let phoneNewCount = phoneQuantity;
+         if(isIncrease == true){
+            phoneNewCount =  phoneQuantity + 1;
+         }
+         if(isIncrease == false && phoneQuantity > 0){
+            phoneNewCount =  phoneQuantity - 1;
+         }
+         phoneInput.value = phoneNewCount;
+         const phoneTotalPrice = phoneNewCount * 1219;
+         //phoneTotalPrice
+         document.getElementById('phoneTotalPrice').innerText = '$' + phoneTotalPrice;
+
+      });
+      }
+
+     /*  //function use
+      function handleProductChange(isIncrease){
+         const caseInput = document.getElementById('case-quantity');
+         const caseQuantity = parseInt(caseInput.value);
+         // const caseNewCount = caseQuantity - 1;
+         let caseNewCount = caseQuantity;
+         if(isIncrease == true){
+            caseNewCount = caseQuantity + 1;
+         }
+         if(isIncrease == false && caseQuantity > 0){
+            caseNewCount = caseQuantity - 1;
+         }
+         caseInput.value = caseNewCount;
+         const caseTotalPrice = caseNewCount * 59;
+         document.getElementById('caseTotalPrice').innerText = '$' + caseTotalPrice;
+      } */
    </script>
 </body>
 
