@@ -43,12 +43,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
+                           <button id="case-decrease" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="case-quantity" type="text" class="form-control text-center" value="1">
                            <button id="case-increase" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$59</h5>
+                        <h5 id="caseTotalPrice">$59</h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -77,6 +77,55 @@
          </div>
       </div>
    </section>
+   <script>
+      // case plus button select and create addEventListener
+      document.getElementById('case-increase').addEventListener('click',function(){
+         handleProductChange(true);
+      });
+
+      document.getElementById('case-decrease').addEventListener('click',function(){
+         handleProductChange(false);
+      })
+      //function use
+      function handleProductChange(isIncrease){
+         const caseInput = document.getElementById('case-quantity');
+         const caseQuantity = parseInt(caseInput.value);
+         // const caseNewCount = caseQuantity - 1;
+         let caseNewCount = caseQuantity;
+         if(isIncrease == true){
+            caseNewCount = caseQuantity + 1;
+         }
+         if(isIncrease == false && caseQuantity > 0){
+            caseNewCount = caseQuantity - 1;
+         }
+         caseInput.value = caseNewCount;
+         const caseTotalPrice = caseNewCount * 59;
+         document.getElementById('caseTotalPrice').innerText = '$' + caseTotalPrice;
+      }
+     /*  // case plus button select and create addEventListener
+      document.getElementById('case-increase').addEventListener('click',function(){
+         // capture input value showing from input id
+         const caseInput = document.getElementById('case-quantity');
+         const caseQuantity = parseInt(caseInput.value);
+         // increase quantity 
+         const caseNewCount = caseQuantity + 1;
+         caseInput.value = caseNewCount;
+         // increase quantity with price
+         const caseTotalPrice = caseNewCount * 59;
+         // confusion
+         document.getElementById('caseTotalPrice').innerText = '$' + caseTotalPrice;
+      });
+
+      document.getElementById('case-decrease').addEventListener('click',function(){
+         const caseInput = document.getElementById('case-quantity');
+         const caseQuantity = parseInt(caseInput.value);
+         const caseNewCount = caseQuantity - 1;
+         caseInput.value = caseNewCount;
+         const caseTotalPrice = caseNewCount * 59;
+         document.getElementById('caseTotalPrice').innerText = '$' + caseTotalPrice;
+      })
+ */
+   </script>
 </body>
 
 </html>
